@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
 
 const LoginForm = () => {
     // Initial form values
@@ -23,10 +24,11 @@ const LoginForm = () => {
 
     const postFormData = async(values)=>{
         try{
-            await axios.post(" ",values);
-            alert("User Loginz Succesfully !!!!")
+            await axios.post(" https://blog-hqx2.onrender.com/user/login",values);
+            toast.success("User Login Succesfully !!!!")
         }
         catch(error){
+            toast.error("User Login failed")
             console.log(error)
         }
 
@@ -112,6 +114,7 @@ const LoginForm = () => {
                                 />
                             </div>
                         </div>
+                        <ToastContainer />
 
                         <button
                             type="submit"
