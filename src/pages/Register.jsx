@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 const Register = () => {
   // Define initial values
@@ -56,7 +57,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center flex-col min-h-screen bg-gray-100">
       <ToastContainer />
       <div className="max-w-lg w-full bg-white shadow-md rounded-xl p-6">
         <h2 className="text-2xl font-semibold mb-6 text-center">Create your account Here !</h2>
@@ -86,12 +87,7 @@ const Register = () => {
                 type: "password",
                 placeholder: "Enter your password",
               },
-              {
-                name: "confirmPassword",
-                label: "Confirm Password",
-                type: "password",
-                placeholder: "Re-enter your password",
-              },
+
             ].map((field) => (
               <div key={field.name} className="mb-4">
                 <label
@@ -147,13 +143,26 @@ const Register = () => {
         <p className="text-center text-sm text-gray-500 mt-6">
           Already have an account?{" "}
           <Link
-            to="/"
+            to="/login"
             className="text-blue-600 hover:text-blue-800 font-medium"
           >
             Log in here
           </Link>
         </p>
       </div>
+      <Link
+        to="/"
+        className="mt-6 flex items-center text-purple-600 font-semibold transition duration-300 group relative"
+      >
+        <IoIosArrowRoundBack className="text-2xl group-hover:-translate-x-1 transition duration-300" />
+        <span className="ml-2 group-hover:text-purple-800">
+          Back to landing page
+        </span>
+
+        {/* Underline on hover */}
+        <span className="absolute left-0 bottom-0 w-full h-[2px] bg-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-bottom-left"></span>
+      </Link>
+
     </div>
   );
 };

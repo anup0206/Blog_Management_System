@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 const LoginForm = () => {
     // Initial form values
@@ -22,12 +23,12 @@ const LoginForm = () => {
             .min(6, "Password must be at least 6 characters"),
     });
 
-    const postFormData = async(values)=>{
-        try{
-            await axios.post(" https://blog-hqx2.onrender.com/user/login",values);
+    const postFormData = async (values) => {
+        try {
+            await axios.post(" https://blog-hqx2.onrender.com/user/login", values);
             toast.success("User Login Succesfully !!!!")
         }
-        catch(error){
+        catch (error) {
             toast.error("User Login failed")
             console.log(error)
         }
@@ -59,16 +60,12 @@ const LoginForm = () => {
     ];
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="flex items-center justify-center min-h-screen bg-gray-100 flex-col">
             {/* Form Container */}
             <div className="w-full max-w-lg p-6 sm:p-8 bg-white shadow-md rounded-lg">
                 <h2 className="text-3xl font-bold text-gray-800 mb-2 text-center">
-                    Welcome back 
+                    Welcome back !
                 </h2>
-                <p className="text-gray-500 mb-8 text-center">
-                    Build your design system effortlessly with our powerful component library.
-                </p>
-
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
@@ -107,7 +104,7 @@ const LoginForm = () => {
                                 Forgot password?
                             </Link>
                             <div className="flex items-center">
-                                <label className="text-gray-600 mr-2">Remember sign in details</label>
+                                <label className="text-gray-600 mr-2">Remember me </label>
                                 <input
                                     type="checkbox"
                                     className="form-checkbox h-5 w-5 text-purple-600 focus:ring-purple-500 rounded"
@@ -153,6 +150,19 @@ const LoginForm = () => {
                     </Form>
                 </Formik>
             </div>
+            <Link
+                to="/"
+                className="mt-6 flex items-center text-purple-600 font-semibold transition duration-300 group relative"
+            >
+                <IoIosArrowRoundBack className="text-2xl group-hover:-translate-x-1 transition duration-300" />
+                <span className="ml-2 group-hover:text-purple-800">
+                    Back to landing page
+                </span>
+
+                {/* Underline on hover */}
+                <span className="absolute left-0 bottom-0 w-full h-[2px] bg-purple-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-bottom-left"></span>
+            </Link>
+
         </div>
     );
 };
