@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { AuthContext } from "../context/AuthContext";
 
 const LoginForm = () => {
+
+    const { login } = useContext(AuthContext)
+
     // Initial form values
     const initialValues = {
         email: "",
@@ -23,13 +27,18 @@ const LoginForm = () => {
             .min(6, "Password must be at least 6 characters"),
     });
 
-    const postFormData = async (values) => {
+    const postData = async (values) => {
         try {
-            await axios.post(" https://blog-hqx2.onrender.com/user/login", values);
+            const response = await axios.post(" https://blog-hqx2.onrender.com/user/login", values);
             toast.success("User Login Succesfully !!!!")
+
+            const token = response.data.token
+            const user = response.data.user
+            console.log(token, user)
+            console.log(response.data)
         }
         catch (error) {
-            toast.error("User Login failed")
+            toast.error(error.message)
             console.log(error)
         }
 
@@ -37,7 +46,7 @@ const LoginForm = () => {
 
     // Handle form submission
     const handleSubmit = (values, { resetForm }) => {
-        postFormData(values);
+        postData(values);
         resetForm();
     };
 
