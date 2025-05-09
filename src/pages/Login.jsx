@@ -9,7 +9,10 @@ import { AuthContext } from "../context/AuthContext";
 
 const LoginForm = () => {
 
-    const { login } = useContext(AuthContext)
+    const { login } = useContext(AuthContext);
+
+
+
 
     // Initial form values
     const initialValues = {
@@ -29,26 +32,31 @@ const LoginForm = () => {
 
     const postData = async (values) => {
         try {
-            const response = await axios.post(" https://blog-hqx2.onrender.com/user/login", values);
-            toast.success("User Login Succesfully !!!!")
+            const response = await axios.post("https://blog-hqx2.onrender.com/user/login", values);
 
-            const token = response.data.token
-            const user = response.data.user
-            console.log(token, user)
-            console.log(response.data)
-        }
-        catch (error) {
-            toast.error(error.message)
-            console.log(error)
-        }
+            toast.success("User Login Successfully!");
 
-    }
+            const { token, user } = response.data;
+
+            console.log("Received Token:", token);
+            console.log("Received User:", user);
+
+            // ✅ Correct: Call login with received values
+            login(token, user);
+
+        } catch (error) {
+            toast.error(error.response?.data?.message || error.message);
+            console.error("Login error:", error);
+        }
+    };
+
 
     // Handle form submission
-    const handleSubmit = (values, { resetForm }) => {
-        postData(values);
-        resetForm();
+    const handleSubmit = async (values, { resetForm }) => {
+        await postData(values);
+        resetForm(); // optional: move this inside postData if you want
     };
+    
 
     // Array of input field configurations
     const inputFields = [
