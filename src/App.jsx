@@ -4,20 +4,32 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Landing from "./pages/Landing.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
-import Home from "./pages/Home.jsx"; // Don’t forget to import Home!
+import Dashboard from "./pages/Dashboard.jsx";
+import CreateBlog from "./pages/CreateBlog.jsx";
+import BlogList from "./pages/BlogList.jsx";
+import { useOutletContext } from "react-router-dom";
+
+const BlogListWrapper = () => {
+    const { blogs } = useOutletContext(); // Access blogs from Dashboard
+    return <BlogList blogs={blogs} />;
+};
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
                 <Route
-                    path="/blogs"
+                    path="/dashboard/*"
                     element={
                         <ProtectedRoute>
-                            <Home />
+                            <Dashboard />
                         </ProtectedRoute>
                     }
-                />
+                >
+                    <Route index element={<BlogListWrapper />} />
+                    <Route path="createblogs" element={<CreateBlog />} />
+                    <Route path="myblogs" element={<div>My Blogs Content</div>} />
+                </Route>
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Register />} />

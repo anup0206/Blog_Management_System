@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -10,7 +10,7 @@ import { AuthContext } from "../context/AuthContext";
 const LoginForm = () => {
 
     const { login } = useContext(AuthContext);
-
+    const navigate = useNavigate();
 
 
 
@@ -43,6 +43,7 @@ const LoginForm = () => {
 
             // ✅ Correct: Call login with received values
             login(token, user);
+            navigate("/dashboard");
 
         } catch (error) {
             toast.error(error.response?.data?.message || error.message);

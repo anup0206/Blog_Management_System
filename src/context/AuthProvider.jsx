@@ -18,18 +18,21 @@ const AuthProvider = ({ children }) => {
     console.log("Current token:", token);
     console.log("Current user:", user);
 
-
-    useEffect(()=>{
-        const storedToken = localStorage.getItem("token")
-        const storedUser = localStorage.getItem("user")
-
-        if (storedToken && storedUser){
-            setToken(setToken)
-            setUser(JSON.parse(setUser))
+    useEffect(() => {
+        const storedToken = localStorage.getItem("token");
+        const storedUser = localStorage.getItem("user");
+    
+        if (storedToken && storedUser) {
+            setToken(storedToken);
+            try {
+                setUser(JSON.parse(storedUser));
+            } catch (error) {
+                console.error("Failed to parse user:", error);
+                setUser(null);
+            }
         }
-        
-
-    },[])
+    }, []);
+    
 
     // Sync to localStorage whenever token or user changes
     useEffect(() => {
