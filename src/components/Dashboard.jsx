@@ -16,6 +16,8 @@ const Dashboard = () => {
     const { user } = useContext(AuthContext);
     // Hook to get the current location (for highlighting active menu items)
     const location = useLocation();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 
     // Function to fetch blogs data from an API
     const fetchBlogs = async () => {
@@ -104,11 +106,31 @@ const Dashboard = () => {
             </div>
 
 
-            <div className="">
-                <h1>Discover BlOG Post</h1>
-                <Link ><IoIosAddCircleOutline /> Create New Blogs</Link>
+            <div className="flex items-center justify-between p-16 mb-6">
+                <div className="flex flex-col space-y-6 w-full max-w-3xl">
+                    <h1 className="text-3xl font-semibold text-gray-800">Discover Blog Posts</h1>
 
+                    {/* Search Bar */}
+                    <div className="relative w-full">
+                        <input
+                            type="text"
+                            placeholder="Search blogs by title, content, or author..."
+                            className="p-4 w-full rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+
+                    </div>
+                </div>
+
+                {/* Create New Blog Button */}
+                <Link
+                    to="/createblogs"
+                    className="flex items-center space-x-3 px-6 py-3 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-all duration-300 shadow-lg focus:ring-4 focus:ring-teal-300"
+                >
+                    <IoIosAddCircleOutline className="text-2xl" />
+                    <span className="font-medium text-lg">Create New Blog</span>
+                </Link>
             </div>
+
 
             {/* Blog Listing Section */}
             <div className="flex flex-wrap justify-center gap-4">
@@ -119,15 +141,16 @@ const Dashboard = () => {
                             className="bg-white w-full sm:w-[48%] lg:w-[30%] p-4 rounded shadow-md hover:shadow-lg transition-shadow duration-300"
                         >
                             {/* Render blog details */}
-                            <h2 className="text-xl font-bold text-gray-800 mb-1">{val.title}</h2>
-                            <p className="text-sm text-gray-600 mb-2">
-                                by <span className="font-medium">{val.author.name}</span> ({val.author.email})
-                            </p>
                             <img
                                 src={val.image}
                                 alt={val.title}
                                 className="w-full h-48 object-cover rounded mb-3"
                             />
+                            <h2 className="text-xl font-bold text-gray-800 mb-1">{val.title}</h2>
+                            <p className="text-sm text-gray-600 mb-2">
+                                by <span className="font-medium">{val.author.name}</span> ({val.author.email})
+                            </p>
+
                             <p className="text-gray-700 mb-2">{val.content}</p>
                             <p className="text-xs text-gray-500">
                                 Created at: {new Date(val.createdAt).toLocaleString()}
