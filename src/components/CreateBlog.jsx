@@ -20,7 +20,8 @@ const CreateBlog = () => {
             .required("Content is required")
             .min(6, "Must be at least 6 characters"),
         featureImage: Yup.mixed()
-            .required("Feature Image is required")
+            // .required("Feature Image is required")
+            .optional()
             .test("fileSize", "Image must be less than 10MB", (value) => {
                 return value && value.size <= 10 * 1024 * 1024; // 10MB in bytes
             }),
@@ -32,6 +33,8 @@ const CreateBlog = () => {
         console.log("Form Values:", values);
         resetForm(); // Reset form after submission
         navigate("/dashboard"); // Redirect to homepage
+
+        
     };
 
     const formitems = [

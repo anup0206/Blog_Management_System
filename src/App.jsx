@@ -4,10 +4,9 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Landing from "./pages/Landing.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
-import CreateBlog from "./pages/CreateBlog.jsx";
-import BlogList from "./pages/BlogList.jsx";
 import { useOutletContext } from "react-router-dom";
+import Dashboard from "./components/Dashboard.jsx";
+import CreateBlog from "./components/CreateBlog.jsx";
 
 const BlogListWrapper = () => {
     const { blogs } = useOutletContext(); // Access blogs from Dashboard
@@ -26,10 +25,10 @@ function App() {
                         </ProtectedRoute>
                     }
                 >
-                    <Route index element={<BlogListWrapper />} />
-                    <Route path="createblogs" element={<CreateBlog />} />
-                    <Route path="myblogs" element={<div>BlogsList</div>} />
                 </Route>
+                    {/* <Route index element={<BlogListWrapper />} /> */}
+                    <Route path="/createblogs" element={<CreateBlog />} />
+                    <Route path="/myblogs" element={<div>BlogsList</div>} />
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Register />} />
