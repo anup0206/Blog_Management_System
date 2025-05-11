@@ -67,7 +67,7 @@ const Dashboard = () => {
             <div className="bg-white shadow-md p-4 mb-6 flex items-center border border-gray-200 justify-between">
                 {/* Logo/Brand Name */}
                 <div className="flex-1 text-left">
-                    <h1 className="text-3xl font-bold text-blue-600 tracking-tight px-16">BlogVerse</h1>
+                    <h1 className="text-3xl font-bold text-blue-600 tracking-tight px-16">BlogVault</h1>
                 </div>
 
                 {/* Navigation Links */}
