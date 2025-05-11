@@ -24,7 +24,7 @@ This is a Blog Management System built using **ReactJS**, **TailwindCSS**, **For
 ## Installation
 1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/anup0206/Blog_Management_System
    cd blog-management-system
    ```
 
