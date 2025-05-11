@@ -15,11 +15,11 @@ const Dashboard = () => {
 
     const fetchBlogs = async () => {
         try {
-            const response = await axios.get("https://blog-hqx2.onrender.com/user/blogs");
-            setBlogs(response.data);
-            console.log(response.data);
+            const response = await axios.get("https://blog-hqx2.onrender.com/blog");
+            setBlogs(response.data)
+            console.log("Root:", response.data);
         } catch (error) {
-            console.error("Error fetching blogs:", error);
+            console.error("Root error:", error);
         }
     };
 
@@ -62,9 +62,8 @@ const Dashboard = () => {
                             <li key={index}>
                                 <Link
                                     to={item.path}
-                                    className={`flex items-center space-x-2 px-4 py-2 border border-transparent rounded-xl transition-all duration-200 hover:bg-gray-800/10 hover:border-gray-700 active:scale-95 ${
-                                        location.pathname === item.path ? "bg-gray-200 border-gray-700" : ""
-                                    }`}
+                                    className={`flex items-center space-x-2 px-4 py-2 border border-transparent rounded-xl transition-all duration-200 hover:bg-gray-800/10 hover:border-gray-700 active:scale-95 ${location.pathname === item.path ? "bg-gray-200 border-gray-700" : ""
+                                        }`}
                                 >
                                     <span className="text-xl text-blue-500">{item.icon}</span>
                                     <span className="text-gray-900 font-medium">{item.title}</span>
@@ -86,6 +85,33 @@ const Dashboard = () => {
                         ))}
                     </ul>
                 </div>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-4">
+                {blogs && blogs.length > 0 ? (
+                    blogs.map((val, i) => (
+                        <div
+                            key={i}
+                            className="bg-white w-full sm:w-[48%] lg:w-[30%] p-4 rounded shadow-md hover:shadow-lg transition-shadow duration-300"
+                        >
+                            <h2 className="text-xl font-bold text-gray-800 mb-1">{val.title}</h2>
+                            <p className="text-sm text-gray-600 mb-2">
+                                by <span className="font-medium">{val.author.name}</span> ({val.author.email})
+                            </p>
+                            <img
+                                src={val.image}
+                                alt={val.title}
+                                className="w-full h-48 object-cover rounded mb-3"
+                            />
+                            <p className="text-gray-700 mb-2">{val.content}</p>
+                            <p className="text-xs text-gray-500">
+                                Created at: {new Date(val.createdAt).toLocaleString()}
+                            </p>
+                        </div>
+                    ))
+                ) : (
+                    <p className="text-gray-500 text-center w-full">No blogs available.</p>
+                )}
             </div>
 
             {/* Render content based on route */}

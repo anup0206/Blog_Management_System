@@ -28,12 +28,13 @@ function App() {
                 >
                     <Route index element={<BlogListWrapper />} />
                     <Route path="createblogs" element={<CreateBlog />} />
-                    <Route path="myblogs" element={<div>My Blogs Content</div>} />
+                    <Route path="myblogs" element={<div>BlogsList</div>} />
                 </Route>
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Register />} />
             </Routes>
+
         </BrowserRouter>
     );
 }
