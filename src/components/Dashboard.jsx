@@ -72,7 +72,9 @@ const Dashboard = () => {
 
             {/* Blog Listing Section */}
             <section className="px-4 md:px-16 py-8 bg-gradient-to-b from-gray-100 to-white">
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 
+                xl:grid-cols-4">
                     {blogs && blogs.length > 0 ? (
                         blogs.map((val, i) => (
                             <Link to={`/singleblog/${val._id}`}

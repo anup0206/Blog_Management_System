@@ -11,6 +11,7 @@ import CreateBlog from "./components/CreateBlog.jsx";
 import Footer from "./components/Footer.jsx";
 import About from "./pages/About.jsx"; // ✅ Import About
 import SingleblogPage from "./pages/SingleblogPage.jsx";
+import MyBlog from "./pages/MyBlog.jsx";
 
 function App() {
     return (
@@ -43,9 +44,17 @@ function App() {
                                 </ProtectedRoute>
                             }
                         />
+                        <Route
+                            path="/myblogs/*"
+                            element={
+                                <ProtectedRoute>
+                                    <MyBlog />
+                                </ProtectedRoute>
+                            }
+                        />
 
                         {/* Public Routes */}
-                        <Route path="/myblogs" element={<div>BlogsList</div>} />
+                        
                         <Route path="/" element={<Landing />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Register />} />
