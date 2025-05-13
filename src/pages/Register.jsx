@@ -26,15 +26,19 @@ const Register = () => {
     password: Yup.string()
       .required("Password is required")
       .min(8, "Password must be at least 8 characters")
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-      ),
+      // .matches(
+      //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      //   "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+      // ),
   });
 
   const postFormData = async (values) => {
     try {
-      await axios.post("https://blog-hqx2.onrender.com/user/register", values);
+      await axios.post("https://blog-hqx2.onrender.com/user/register", {
+        name:values.name,
+        email:values.email,
+        password:values.password,
+      });
       toast.success("User Registered Successfully!");
     } catch (error) {
       const errorMessage =
