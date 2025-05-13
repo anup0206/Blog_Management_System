@@ -75,10 +75,11 @@ const Dashboard = () => {
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {blogs && blogs.length > 0 ? (
                         blogs.map((val, i) => (
-                            <div
+                            <Link to={`/singleblog/${val._id}`}
                                 key={i}
                                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 group"
                             >
+
                                 <div className="relative w-full h-48 overflow-hidden">
                                     <img
                                         src={val.image}
@@ -96,7 +97,7 @@ const Dashboard = () => {
                                         {new Date(val.createdAt).toLocaleString()}
                                     </p>
                                 </div>
-                            </div>
+                            </Link>
                         ))
                     ) : (
                         <p className="text-gray-500 text-center col-span-full">No blogs available.</p>
