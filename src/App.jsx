@@ -13,6 +13,7 @@ import MyBlog from "./pages/MyBlog.jsx";
 import ProfileSection from "./components/ProfileSection.jsx";  // Import your ProfileSection
 import { AuthContext } from "./context/AuthContext.jsx";
 import EditBlogs from "./pages/EditBlog.jsx";
+import Navbar from "./components/Navbar.jsx";
 
 function App() {
  const {user} =useContext(AuthContext);
@@ -20,6 +21,8 @@ function App() {
   return (
     <BrowserRouter>
       <div className="flex flex-col min-h-screen">
+         {/* Navbar goes here */}
+    <Navbar />
         <div className="flex-grow">
           <Routes>
             {/* Protected Routes */}

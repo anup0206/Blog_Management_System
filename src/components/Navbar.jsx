@@ -7,12 +7,14 @@ import { AiOutlinePoweroff } from "react-icons/ai";
 import { AuthContext } from "../context/AuthContext";
 import { HiOutlineMenuAlt3, HiX } from "react-icons/hi";
 import { RiQuillPenLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 790); // Initialize based on window size
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
     const location = useLocation();
+    const navigate = useNavigate();
 
     const navitems = [
         { title: "Home", icon: <IoIosHome />, path: "/dashboard" },
@@ -31,6 +33,7 @@ const Navbar = () => {
             title: "Logout",
             icon: <AiOutlinePoweroff />,
             path: "/",
+            function: logout,
             className: "text-red-500 hover:bg-red-50 hover:border-red-600",
         },
     ];
@@ -79,6 +82,7 @@ const Navbar = () => {
                         <Link
                             key={i}
                             to={item.path}
+                            onClick={item.function}
                             className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all text-gray-700 hover:bg-gray-100 
                 ${location.pathname === item.path ? "bg-gray-200 font-semibold" : ""}`}
                         >
@@ -89,7 +93,12 @@ const Navbar = () => {
                     {userItems.map((item, i) => (
                         <Link
                             key={i}
-                            to={item.path}
+                            to={item.path} onClick={() => {
+                                if (item.function) item.function(); // logout()
+                                navigate("/login"); // or "/" if that’s your login page
+
+                            }}
+
                             className={`flex items-center gap-2 px-3 py-2 rounded-lg border border-transparent transition-all ${item.className}`}
                         >
                             {item.icon}
@@ -118,7 +127,12 @@ const Navbar = () => {
                     <Link
                         key={i}
                         to={item.path}
-                        onClick={() => setMenuOpen(false)}
+                        onClick={() => {
+                            if (item.function) item.function(); // logout()
+                            navigate("/login"); // or "/" if that’s your login page
+                            setMenuOpen(false);
+                        }}
+
                         className={`block px-4 py-2 rounded-md border border-transparent ${item.className}`}
                     >
                         {item.icon} {item.title}

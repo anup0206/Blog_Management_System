@@ -18,10 +18,11 @@ const AuthProvider = ({ children }) => {
     console.log("Current token:", token);
     console.log("Current user:", user);
 
+
     useEffect(() => {
         const storedToken = localStorage.getItem("token");
         const storedUser = localStorage.getItem("user");
-    
+
         if (storedToken && storedUser) {
             setToken(storedToken);
             try {
@@ -32,7 +33,7 @@ const AuthProvider = ({ children }) => {
             }
         }
     }, []);
-    
+
 
     // Sync to localStorage whenever token or user changes
     useEffect(() => {
@@ -54,7 +55,7 @@ const AuthProvider = ({ children }) => {
         setUser(userDetails);
     };
 
-    // Optional: Logout function to clear auth state
+    //  Logout function to clear auth state
     const logout = () => {
         console.log("Logging out");
         setToken(null);

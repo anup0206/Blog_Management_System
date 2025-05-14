@@ -17,7 +17,7 @@ const ProfileSection = ({ user }) => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get(`https://blog-hqx2.onrender.com/blog/${user._id}`);
+        const res = await axios.get(`https://blog-hqx2.onrender.com/blog/${user._id}`);sss
         setBlogs(res.data);
       } catch (err) {
         console.error("Error fetching blogs", err);
