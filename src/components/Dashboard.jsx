@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { IoIosAddCircleOutline } from "react-icons/io";
-import Navbar from "./Navbar";
+// import Navbar from "./Navbar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 
@@ -53,7 +53,7 @@ const Dashboard = () => {
 
     return (
         <section className="min-h-screen bg-gray-100">
-            <Navbar />
+{/*             <Navbar /> */}
 
             <div className="flex flex-col md:flex-row items-center justify-between p-8 md:p-16 space-y-6 md:space-y-0">
                 <div className="flex flex-col space-y-4 w-full md:w-auto max-w-3xl">
