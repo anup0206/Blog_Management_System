@@ -52,7 +52,7 @@ const ProfileSection = ({ user }) => {
       <div className="flex flex-col md:flex-row items-center gap-6">
 
         {/* Avatar block with optional uploaded image and initials fallback */}
-        <div className="relative w-24 h-24 sm:w-36 sm:h-36 rounded-full overflow-hidden shadow-md group">
+        <div className="relative w-36 h-24 sm:w-36 sm:h-28 rounded-full overflow-hidden shadow-md group">
           {user?.avatarUrl ? (
             // If user has uploaded an avatar, show it
             <img

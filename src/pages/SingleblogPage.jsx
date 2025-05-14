@@ -118,16 +118,16 @@ const SingleblogPage = () => {
                                     </div>
 
                                     {/* Edit & Delete Buttons */}
-                                    <div className="flex flex-col gap-2">
+                                    <div className="flex flex-col gap-4">
                                         <button
                                             onClick={() => navigate(`/editblog/${blog?._id}`)}
-                                            className="px-3 py-1 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded"
+                                            className="px-3 py-1 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded flex items-center gap-3"
                                         >
                                            <MdEdit /> Edit
                                         </button>
                                         <button
                                             onClick={() =>deleteBlogs(blog?._id)}
-                                            className="px-3 py-1 text-sm bg-red-600 hover:bg-red-700 text-white rounded"
+                                            className="px-3 py-1 text-sm bg-red-600 hover:bg-red-700 text-white rounded flex items-center gap-3"
                                         >
                                             <MdDelete />Delete
                                         </button>

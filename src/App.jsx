@@ -12,6 +12,7 @@ import SingleblogPage from "./pages/SingleblogPage.jsx";
 import MyBlog from "./pages/MyBlog.jsx";
 import ProfileSection from "./components/ProfileSection.jsx";  // Import your ProfileSection
 import { AuthContext } from "./context/AuthContext.jsx";
+import EditBlogs from "./pages/EditBlog.jsx";
 
 function App() {
  const {user} =useContext(AuthContext);
@@ -54,6 +55,11 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route path='/editBlogs/:id' element={
+          <ProtectedRoute>
+           <EditBlogs />
+          </ProtectedRoute> 
+        } />
 
             {/* Add Profile Route */}
             <Route

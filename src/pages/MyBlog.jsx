@@ -44,35 +44,37 @@ const MyBlog = () => {
   };
 
   // Update blog
-  const handleEdit = async (e) => {
-    e.preventDefault();
+  // const handleEdit = async (e) => {
+  //   e.preventDefault();
+  //   console.log("Editing blog")
 
-    try {
-      const response = await axios.put(
-        `https://blog-hqx2.onrender.com/blog/${editingBlog._id}`,
-        {
-          title: editingBlog.title,
-          content: editingBlog.content,
-        }
-      );
+  //   try {
+  //     const response = await axios.put(
+  //       `https://blog-hqx2.onrender.com/blog/${editingBlog._id}`,
+  //       {
+  //         title: editingBlog.title,
+  //         content: editingBlog.content,
+  //       }
 
-      if (response.status === 200) {
-        alert("Blog updated successfully");
-        const updatedBlog = response.data;
+  //     );
 
-        setMyBlogs((prev) =>
-          prev.map((blog) =>
-            blog._id === updatedBlog._id ? updatedBlog : blog
-          )
-        );
+  //     if (response.status === 200) {
+  //       alert("Blog updated successfully");
+  //       const updatedBlog = response.data;
 
-        setEditingBlog(null);
-      }
-    } catch (error) {
-      console.error("Error updating blog:", error);
-      alert("Failed to update blog.");
-    }
-  };
+  //       setMyBlogs((prev) =>
+  //         prev.map((blog) =>
+  //           blog._id === updatedBlog._id ? updatedBlog : blog
+  //         )
+  //       );
+
+  //       setEditingBlog(null);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error updating blog:", error);
+  //     alert("Failed to update blog.");
+  //   }
+  // };
 
   return (
     <div className="w-11/12 mx-auto py-10">
@@ -84,7 +86,7 @@ const MyBlog = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {myBlogs.map((blog) => (
             <Link
-             to={`/singleblog/${blog._id}`}
+              to={`/singleblog/${blog._id}`}
               key={blog._id}
               className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col"
             >
@@ -101,16 +103,12 @@ const MyBlog = () => {
                   {blog.content}
                 </p>
                 <div className="flex justify-end gap-4 mt-4">
-                  <button
-                    className="text-blue-600 flex items-center gap-1"
-                    onClick={() =>
-                      setEditingBlog({ ...blog, imageFile: null })
-                    }
-                  >
+                  <Link to={`/editBlogs/${blog?._id}`} state={{ blog }}>  <button className="text-blue-600 flex items-center gap-1 cursor-pointer">
                     <Pencil className="w-4 h-4" /> Edit
                   </button>
+                  </Link>
                   <button
-                    className="text-red-600 flex items-center gap-1"
+                    className="text-red-600 flex items-center gap-1 cursor-pointer"
                     onClick={() => handleDelete(blog._id)}
                   >
                     <Trash2 className="w-4 h-4" /> Delete
